@@ -40,11 +40,11 @@ public class KeyedStateDeduplication {
         // 使用 RocksDBStateBackend 做为状态后端，并开启增量 Checkpoint
         RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend(
                 "hdfs:///flink/checkpoints", true);
-        rocksDBStateBackend.setNumberOfTransferingThreads(3);
+        rocksDBStateBackend.setNumberOfTransferThreads(3);
         // 设置为机械硬盘+内存模式，强烈建议为 RocksDB 配备 SSD
         rocksDBStateBackend.setPredefinedOptions(
                 PredefinedOptions.SPINNING_DISK_OPTIMIZED_HIGH_MEM);
-        rocksDBStateBackend.enableTtlCompactionFilter();
+        //rocksDBStateBackend.enableTtlCompactionFilter();
         env.setStateBackend(rocksDBStateBackend);
 
         // Checkpoint 间隔为 10 分钟

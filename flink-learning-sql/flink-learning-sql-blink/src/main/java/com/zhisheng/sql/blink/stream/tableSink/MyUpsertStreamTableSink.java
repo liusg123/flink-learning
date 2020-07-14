@@ -3,6 +3,7 @@ package com.zhisheng.sql.blink.stream.tableSink;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.DataStreamSink;
 import org.apache.flink.table.sinks.TableSink;
 import org.apache.flink.table.sinks.UpsertStreamTableSink;
 import org.apache.flink.types.Row;
@@ -31,12 +32,17 @@ public class MyUpsertStreamTableSink implements UpsertStreamTableSink<Row> {
     }
 
     @Override
+    public TableSink<Tuple2<Boolean, Row>> configure(String[] strings, TypeInformation<?>[] typeInformations) {
+        return null;
+    }
+
+    @Override
     public void emitDataStream(DataStream<Tuple2<Boolean, Row>> dataStream) {
 
     }
 
     @Override
-    public TableSink<Tuple2<Boolean, Row>> configure(String[] strings, TypeInformation<?>[] typeInformations) {
+    public DataStreamSink<?> consumeDataStream(DataStream<Tuple2<Boolean, Row>> dataStream) {
         return null;
     }
 }

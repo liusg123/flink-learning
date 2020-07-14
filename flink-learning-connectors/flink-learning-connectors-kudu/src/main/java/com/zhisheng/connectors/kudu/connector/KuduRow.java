@@ -15,21 +15,21 @@ import java.util.stream.Stream;
  * blog：http://www.54tianzhisheng.cn/
  * 微信公众号：zhisheng
  */
-public class KuduRow extends Row {
-
+public class KuduRow {
+    private Row row;
     private Map<String, Integer> rowNames;
 
     public KuduRow(Integer arity) {
-        super(arity);
+        this.row = new Row(arity);
         rowNames = new LinkedHashMap<>();
     }
 
     public Object getField(String name) {
-        return super.getField(rowNames.get(name));
+        return row.getField(rowNames.get(name));
     }
 
     public void setField(int pos, String name, Object value) {
-        super.setField(pos, value);
+        row.setField(pos, value);
         this.rowNames.put(name, pos);
     }
 
@@ -38,7 +38,7 @@ public class KuduRow extends Row {
     }
 
     public boolean isNull(int pos) {
-        return getField(pos) == null;
+        return row.getField(pos) == null;
     }
 
     private static int validFields(Object object) {
@@ -59,7 +59,7 @@ public class KuduRow extends Row {
         Map<String,Object> toRet = new LinkedHashMap<>();
         rowNames.entrySet().stream()
                 .sorted(Comparator.comparing(Map.Entry::getValue))
-                .forEach(entry -> toRet.put(entry.getKey(), super.getField(entry.getValue())));
+                .forEach(entry -> toRet.put(entry.getKey(), row.getField(entry.getValue())));
         return  toRet;
     }
 

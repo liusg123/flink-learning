@@ -36,6 +36,11 @@ public class MyRetractStreamTableSink implements RetractStreamTableSink<Row> {
     }
 
     @Override
+    public void emitDataStream(DataStream<Tuple2<Boolean, Row>> dataStream) {
+
+    }
+
+    @Override
     public DataStreamSink<?> consumeDataStream(DataStream<Tuple2<Boolean, Row>> dataStream) {
         return dataStream.addSink(new SinkFunction<Tuple2<Boolean, Row>>() {
             @Override
@@ -59,10 +64,5 @@ public class MyRetractStreamTableSink implements RetractStreamTableSink<Row> {
     @Override
     public TableSink<Tuple2<Boolean, Row>> configure(String[] strings, TypeInformation<?>[] typeInformations) {
         return null;
-    }
-
-    @Override
-    public void emitDataStream(DataStream<Tuple2<Boolean, Row>> dataStream) {
-
     }
 }

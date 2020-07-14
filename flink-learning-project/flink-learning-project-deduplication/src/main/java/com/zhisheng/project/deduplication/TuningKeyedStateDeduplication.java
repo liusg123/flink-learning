@@ -35,9 +35,9 @@ public class TuningKeyedStateDeduplication {
         env.setParallelism(6);
 
         RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend("hdfs:///flink/checkpoints", enableIncrementalCheckpointing);
-        rocksDBStateBackend.setNumberOfTransferingThreads(numberOfTransferingThreads);
+        rocksDBStateBackend.setNumberOfTransferThreads(numberOfTransferingThreads);
         rocksDBStateBackend.setPredefinedOptions(PredefinedOptions.SPINNING_DISK_OPTIMIZED_HIGH_MEM);
-        rocksDBStateBackend.enableTtlCompactionFilter();
+        //rocksDBStateBackend.enableTtlCompactionFilter();
         env.setStateBackend(rocksDBStateBackend);
 
         CheckpointConfig checkpointConf = env.getCheckpointConfig();

@@ -33,7 +33,7 @@ public class TableExampleWordCount {
                 .withFormat(new OldCsv().field("word", Types.STRING).lineDelimiter("\n"))
                 .withSchema(new Schema().field("word", Types.STRING))
                 .inAppendMode()
-                .registerTableSource("FlieSourceTable");
+                .createTemporaryTable("FlieSourceTable");
 
         Table wordWithCount = blinkStreamTableEnv.scan("FlieSourceTable")
                 .groupBy("word")

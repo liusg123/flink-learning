@@ -27,8 +27,7 @@ public class MetadataSerializer {
         DataInputStream dis = new DataInputStream(bis);
 
         // 通过 Flink 的 Checkpoints 类解析元数据文件
-        Savepoint savepoint = Checkpoints.loadCheckpointMetadata(dis,
-                MetadataSerializer.class.getClassLoader());
+        Savepoint savepoint = Checkpoints.loadCheckpointMetadata(dis,MetadataSerializer.class.getClassLoader());
         // 打印当前的 CheckpointId
         System.out.println(savepoint.getCheckpointId());
 
