@@ -21,11 +21,6 @@ public class MyAppendStreamTableSink implements AppendStreamTableSink<Row> {
     }
 
     @Override
-    public void emitDataStream(DataStream<Row> dataStream) {
-
-    }
-
-    @Override
     public DataStreamSink<?> consumeDataStream(DataStream<Row> dataStream) {
         return null;
     }
