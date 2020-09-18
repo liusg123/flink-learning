@@ -51,7 +51,7 @@ public class CheckPointUtil {
         // 设置 checkpoint 必须在1分钟内完成，否则会被丢弃
         env.getCheckpointConfig().setCheckpointTimeout(60000);
         // 设置 checkpoint 失败时，任务不会 fail，该 checkpoint 会被丢弃
-        env.getCheckpointConfig().setFailOnCheckpointingErrors(false);
+        env.getCheckpointConfig().setTolerableCheckpointFailureNumber(Integer.MAX_VALUE);
         // 设置 checkpoint 的并发度为 1
         env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
 

@@ -8,9 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>flink-learning-connectors-nifi</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -18,7 +16,6 @@
             <version>${flink.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

@@ -34,6 +34,7 @@ public class CassandraTupleWriteAheadSinkExample {
         env.setParallelism(1);
         env.enableCheckpointing(1000);
         env.setRestartStrategy(RestartStrategies.fixedDelayRestart(1, 1000));
+
         env.setStateBackend(new FsStateBackend("file:///" + System.getProperty("java.io.tmpdir") + "/flink/backend"));
 
         CassandraSink<Tuple2<String, Integer>> sink = CassandraSink.addSink(env.addSource(new MySource()))

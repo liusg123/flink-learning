@@ -18,8 +18,7 @@
 
 package com.zhisheng.core.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -28,10 +27,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Utilities for {@link java.util.concurrent.Executor Executors}.
  */
+@Slf4j
 public class ExecutorUtils {
-
-	private static final Logger LOG = LoggerFactory.getLogger(org.apache.flink.util.ExecutorUtils.class);
-
 	/**
 	 * Gracefully shutdown the given {@link ExecutorService}. The call waits the given timeout that
 	 * all ExecutorServices terminate. If the ExecutorServices do not terminate in this time,
@@ -45,7 +42,6 @@ public class ExecutorUtils {
 		for (ExecutorService executorService: executorServices) {
 			executorService.shutdown();
 		}
-
 		boolean wasInterrupted = false;
 		final long endTime = unit.toMillis(timeout) + System.currentTimeMillis();
 		long timeLeft = unit.toMillis(timeout);
@@ -57,11 +53,11 @@ public class ExecutorUtils {
 			} else {
 				try {
 					if (!executorService.awaitTermination(timeLeft, TimeUnit.MILLISECONDS)) {
-						LOG.warn("ExecutorService did not terminate in time. Shutting it down now.");
+						log.warn("ExecutorService did not terminate in time. Shutting it down now.");
 						executorService.shutdownNow();
 					}
 				} catch (InterruptedException e) {
-					LOG.warn("Interrupted while shutting down executor services. Shutting all " +
+					log.warn("Interrupted while shutting down executor services. Shutting all " +
 							"remaining ExecutorServices down now.", e);
 					executorService.shutdownNow();
 

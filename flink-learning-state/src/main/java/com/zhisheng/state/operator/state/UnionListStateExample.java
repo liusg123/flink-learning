@@ -2,6 +2,7 @@ package com.zhisheng.state.operator.state;
 
 
 import com.zhisheng.state.operator.state.util.UnionListStateUtil;
+import lombok.val;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.state.ListState;
 import org.apache.flink.api.common.state.ListStateDescriptor;
@@ -56,6 +57,8 @@ public class UnionListStateExample {
                 .addSink(new MySink())
                 .uid("MySink")
                 .name("MySink");
+
+        val s = "";
 
         env.execute("Flink unionListState");
     }
